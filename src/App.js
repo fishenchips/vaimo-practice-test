@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+//import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import React, { useState } from "react";
+import LandingPage from "./components/LandingPage";
 
 function App() {
+  //const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  //adding a product to the cart
+  const onAdd = (product) => {
+    //define if product exists, if so add one more of qty
+    const exist = cartItems.find(
+      (cartProduct) => cartProduct.id === product.id
+    );
+    if (exist) {
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem.id === product.id
+            ? {
+                ...exist,
+                qty: exist.qty + 1,
+              }
+            : cartItem
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <LandingPage
+        onAdd={onAdd}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        //products={products}
+        //setProducts={setProducts}
+      />
     </div>
   );
 }

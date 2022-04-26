@@ -1,0 +1,32 @@
+.productList{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.productImg{
+    height: 50px;
+}
+
+img{
+    height: 100%;
+    width: auto;
+}
+
+.productName{
+    width: 230px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.productFooter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkoutSum{
+    margin-top: 25px;
+    float: left;
+}
